@@ -1,4 +1,4 @@
-# <p align="center"> Insert Title here </p>
+# <p align="center"> Canton of St. Gallen </p>
 
 ## <p align="center"> Case Introduction: </p>
 
