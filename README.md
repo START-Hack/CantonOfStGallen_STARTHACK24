@@ -1,5 +1,7 @@
 # <p align="center"> Canton of St. Gallen </p>
 
+![St.Gallen](https://github.com/START-Hack/CantonOfStGallen_STARTHACK24/blob/98bb6ef9dbdeaeb5fc7fa611bccf5c0df75c14a5/Regierungsgeba%CC%88ude_CMS.jpg)
+
 ## <p align="center"> Case Introduction: </p>
 
 **Problem**: The canton of St.Gallen faces the challenge that call volumes remain high despite new e-services and digital support requests. The expansion of the canton's range of services is in turn leading to more support requests. In addition to digital solutions in service management, the population and companies are also demanding rapid telephone assistance. To fulfil this demand, a voicebot is to be created as a scalable solution for improving telephone availability and automation.
