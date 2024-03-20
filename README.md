@@ -19,8 +19,11 @@ Morbi vitae diam at diam pellentesque tempor. Vivamus porttitor turpis quis feli
 Pellentesque vehicula nibh ut metus tempor, id finibus ligula auctor. Vivamus semper dui semper ante condimentum commodo. Sed eget odio ac odio rutrum viverra eget ut dui. Sed scelerisque sem sit amet auctor gravida. Curabitur auctor urna quis lacus tempus luctus. Phasellus dictum erat sit amet nulla commodo egestas. Suspendisse potenti. Duis quis justo ut quam mollis venenatis vel ut ipsum. Integer ornare, neque ut aliquam convallis, odio eros rutrum quam, non pharetra turpis nisl ac arcu. Fusce in nulla tempor, semper nisi eu, sollicitudin est.
 
 ##  <p align="center"> Resources: </p>
-- Lorem ipsum dolor sit amet
-- consectetur adipiscing elit
+- We downloaded every single page from [sg.ch](https://sg.ch), covering 12 main sections as well as audio files with the voice recording reading the content of webpages. In total, it includes 3879 HTML pages, which requires around 400Mb of storage, and has 3492 unique MP3 recordings from `Vorlesen` (see the example here https://www.sg.ch/content/sgch/steuern-finanzen/steuern/formulare-wegleitungen/einkommens-vermoegenssteuer-privatpersonen.html). 
+- All data is stored in `data.zip` file that can be found on [Azure](https://djstarthackathon.blob.core.windows.net/data/data.zip)
+- We organised `data` derictory in such a way that it represents the hirarchy of werbpages on the [sg.ch](https://sg.ch) website. In `st-gallen-data.xlsx` we collected for every webpage from [sg.ch](https://sg.ch) (1) a url of the page, (2) local path to the scrapped HTML file of the webpage, and (3) the link to the mp3 file with the recorded voice
+- We also downloaded the `.mp3` recording reading the content of the page for every webpage where it was available. We stored `.mp3` in the corrresponding directory under the name `audio.mp3`.
+- Also if you need a more detailed information about the scrapping process, refer to a Jupyter Notebooks in the repo: scraping.ipynb to audio.ipynb to the audio files
 
 
 ## <p align="center"> Judging Criteria: </p>
