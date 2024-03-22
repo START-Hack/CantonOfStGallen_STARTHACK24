@@ -14,6 +14,7 @@ import time
 import modelbit
 from openai import OpenAI
 from pydub import AudioSegment
+from model_openai import LanguageModelYosef
 
 
 
@@ -80,62 +81,10 @@ def transcribe_audio(audio_path):
     )
     
     return transcript
-# def transcribe_audio(audio_path):
-#     with open(audio_path, 'rb') as audio_file:
-#         encoded_audio = base64.b64encode(audio_file.read()).decode('utf-8')
-#     data = {
-#         "input_data": {
-#             "audio": encoded_audio,
-#             "language": ["de"]
-#         }
-#     }
-    
-#     headers = {
-#         'Content-Type': 'application/json',
-#         'Authorization': f'Bearer {WHISPER_API_KEY}'
-#     }
-    
-#     print("Transcribing...")
-#     response = requests.post(WHISPER_API_ENDPOINT, headers=headers, data=json.dumps(data))
-#     return response
 
 def generate_response(transcription_text):
-    
-    helper_in_swiss = modelbit.get_inference(
-        workspace="yosefiankurniadi",
-        deployment="get_response",
-        data=transcription_text
-    )
-    
-    model_answer = helper_in_swiss['data']['answer']
-    
-    mistral_input = {
-        "input_data": {
-            "input_string": [
-                
-                {
-                    "role": "user",
-                    "content": f"Bitte antworten auf deutsch: {transcription_text}"
-                }
-            ],
-            "parameters": {
-                "temperature": 0.7,
-                "top_p": 0.9,
-                "do_sample": True,
-                "max_new_tokens": 150, 
-                "return_full_text": False
-            }
-        }
-    }
-    
-    headers = {
-        'Content-Type': 'application/json',
-        'Authorization': f'Bearer {MISTRAL_API_KEY}'
-    }
-    
-    
-    response = requests.post(MISTRAL_API_ENDPOINT, headers=headers, data=json.dumps(mistral_input).encode('utf-8'))
-    return response
+    model = LanguageModelYosef(api_key=OPENAI_API_KEY)
+    return model.get_response(transcription_text, 5)
 
 def synthesize_speech(text):
     speech_config = speechsdk.SpeechConfig(subscription=SPEECH_KEY, region=SERVICE_REGION)
@@ -157,12 +106,10 @@ async def process_audio_stream(base64_audio):
     transcription_response = transcribe_audio(audio_path)
     print(f"Transcription: {transcription_response}")
     # Generate a response based on the transcription
-    mistral_response = generate_response(transcription_response)
-    if mistral_response.status_code == 200:
-        response_text = mistral_response.json()[0]['0']
-        # Synthesize speech from the response text
-        print(f"Response: {response_text}")
-        synthesize_speech(response_text)
+    openai_response = generate_response(transcription_response)
+    print(f"Response: {openai_response}")
+    synthesize_speech(openai_response)  # Synthesize speech from the response text
+        
         
 def process_base64_audio_data(msg_list):
     print(f"Processing {len(msg_list)} audio chunks...")
@@ -178,7 +125,7 @@ def process_base64_audio_data(msg_list):
 
 def test_default():
     audio_data = record_audio(DURATION, SAMPLING_RATE)
-    audio_path = save_audio(audio_data, SAMPLING_RATE)
+    audio_path = save_audio_wav(audio_data, SAMPLING_RATE)
     transcribe_response = transcribe_audio(audio_path)
     print(f"Transcription: {transcribe_response}")
     response_text = generate_response(transcribe_response)
