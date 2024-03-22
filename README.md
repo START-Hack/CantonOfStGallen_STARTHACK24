@@ -71,3 +71,9 @@ Participants must submit a PowerPoint (.pptx) presentation that outlines their c
 
 OR
 - a paragliding flight in the Canton of St.Gallen.
+
+
+## HOW TO DEPLOY (TEMPORARILY)
+1. Use ngrok for exposing local server
+2. Use Twilio for phonecall service
+3. Install all dependencies

@@ -1,0 +1,15 @@
+.env
+*.mp3
+*.html
+*.wav
+*.pcmu
+*.ipynb
+data/
+model/__init__.py
+model/__pycache__/
+model/api_keys.txt
+model/ngrok.exe
+model/requirements.txt
+output.srt
+phone/
+test_audio/
